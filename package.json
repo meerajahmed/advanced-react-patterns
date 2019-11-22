@@ -1,0 +1,23 @@
+{
+  "name": "react-starter-kit",
+  "version": "1.0.0",
+  "description": "React starter kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meerajahmed/react-starter-kit.git"
+  },
+  "keywords": [
+    "react",
+    "starter-kit"
+  ],
+  "author": "Meeraj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/meerajahmed/react-starter-kit/issues"
+  },
+  "homepage": "https://github.com/meerajahmed/react-starter-kit#readme"
+}
