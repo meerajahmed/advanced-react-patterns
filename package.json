@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/meerajahmed/react-starter-kit#readme",
   "dependencies": {
+    "@bootstrap-styled/provider": "^1.5.3",
+    "@bootstrap-styled/v4": "^3.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1",
     "webpack": "^4.41.2"
   },
   "devDependencies": {
