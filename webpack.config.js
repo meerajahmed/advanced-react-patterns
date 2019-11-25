@@ -26,7 +26,7 @@ const config = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: './index.html',
-            favicon: './src/assets/icons/favicon.png'
+            favicon: './src/static/icons/favicon.png'
         })
     ]
 };
