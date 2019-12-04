@@ -1,11 +1,10 @@
 import React from 'react';
-import {H1, Header, Navbar, Nav, NavItem } from "@bootstrap-styled/v4";
-import { NavLink }  from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 
-import Layout from "../../templates/layout";
+import {Container, H1, Header, Nav, Navbar, NavItem} from "@bootstrap-styled/v4";
 
-const Home = () => (
-    <Layout>
+const About = () => (
+    <Container fluid className="py-2">
         <Navbar color="faded" light toggleable="sm">
             <Nav navbar className="mr-auto">
                 <NavItem>
@@ -17,9 +16,9 @@ const Home = () => (
             </Nav>
         </Navbar>
         <Header className="d-flex justify-content-center my-5 p-2">
-            <H1 className="display-3">Hello, World!</H1>
+            <H1 className="display-3">About page</H1>
         </Header>
-    </Layout>
+    </Container>
 );
 
-export default Home;
+export default About;

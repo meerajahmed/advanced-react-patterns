@@ -1,7 +1,10 @@
 import React from "react";
-import AppRouter from "./routes/app-router";
 import BootstrapProvider from "@bootstrap-styled/provider";
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
+import {Provider} from 'react-redux';
+
+import AppRouter from "./routes/AppRouter";
+import store from './global/store';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -12,7 +15,9 @@ const GlobalStyle = createGlobalStyle`
 const App = () => (
     <BootstrapProvider reset={true} injectGlobal={true}>
         <GlobalStyle />
-        <AppRouter/>
+        <Provider store={store}>
+            <AppRouter/>
+        </Provider>
     </BootstrapProvider>
 );
 
