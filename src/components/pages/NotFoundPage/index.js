@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Container, H1, Header} from "@bootstrap-styled/v4";
 
 const NotFoundPage = () => (
     <Container fluid className="py-2">

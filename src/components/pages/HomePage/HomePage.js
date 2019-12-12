@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, H1, Header, Nav, Navbar, NavItem} from '@bootstrap-styled/v4';
 import {NavLink} from "react-router-dom";
 import Tasks from "../../../containers/organisms/Tasks";
 

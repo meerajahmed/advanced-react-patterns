@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import uuid from "uuid";
 import {TASK_NOT_STARTED} from "../../atoms/Task";
-import {Button, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label, Textarea} from "@bootstrap-styled/v4";
 
 export default class AddTask extends Component {
 

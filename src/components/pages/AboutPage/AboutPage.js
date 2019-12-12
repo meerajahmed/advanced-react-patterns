@@ -1,8 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-import {Container, H1, Header, Nav, Navbar, NavItem} from "@bootstrap-styled/v4";
-
 const About = () => (
     <Container fluid className="py-2">
         <Navbar color="faded" light toggleable="sm">
