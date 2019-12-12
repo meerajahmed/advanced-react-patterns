@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import uuid from "uuid";
 import {TASK_NOT_STARTED} from "../../atoms/Task";
+import {Button, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label, Textarea} from "@bootstrap-styled/v4";
 
 export default class AddTask extends Component {
 
@@ -50,23 +51,28 @@ export default class AddTask extends Component {
         return (
             <div>
                 <div className="d-flex justify-content-end">
-                    <button type="button" className="btn btn-outline-primary" onClick={this.handleCreateTask}>+ New Task</button>
+                    <Button outline color="primary" size="lg" onClick={this.handleCreateTask}>+ New Task</Button>
                 </div>
                 {
                     this.state.isFormVisible && (
-                        <form className="mt-3" onSubmit={this.handleAddTask}>
-                            <div className="form-group">
-                                <input type="text" className="form-control" placeholder="title" value={this.state.title}
+                        <Form className="mt-3" onSubmit={this.handleAddTask}>
+                            <FormGroup>
+                                <Input type="text" placeholder="title" value={this.state.title}
                                        onChange={(event) => this.handleTitleChange(event.target.value)}
                                 />
-                            </div>
-                            <div className="form-group">
-                <textarea className="form-control" placeholder="description"
-                          value={this.state.description}
-                          onChange={(event) => this.handleDescriptionChange(event.target.value)}/>
-                            </div>
-                            <button type="submit" className="btn btn-outline-success">Save</button>
-                        </form>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label hidden htmlFor="inline-form-input-group">Username</Label>
+                                <Input type="text" className="form-control" />
+
+                                <Textarea className="w-100"
+                                          placeholder="description"
+                                          value={this.state.description}
+                                          onChange={(event) => this.handleDescriptionChange(event.target.value)} />
+
+                            </FormGroup>
+                            <Button outline color="primary" type="submit">primary</Button>
+                        </Form>
                     )
                 }
 
