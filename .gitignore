@@ -17,12 +17,14 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
+# Environment properties
+.env.*
+
 # Compiled output
 dist/
 
 # Editor files
 .idea
-.vscode
 
 # OS files
 .DS_Store
