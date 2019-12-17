@@ -1,3 +1,3 @@
-import configureStore from "./config";
+import configureStore from './config';
 
 export default configureStore();

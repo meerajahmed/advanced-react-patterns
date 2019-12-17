@@ -2,11 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => (
-    <Container fluid className="py-2">
-        <Header className="d-flex justify-content-center my-5 p-2">
-            <H1 className="display-3">404 - <Link to="/">Go home</Link></H1>
-        </Header>
-    </Container>
+  <div className="py-2">
+    <div className="container-fluid">
+      <h1 className="display-3">
+        404 - <Link to="/">Go home</Link>
+      </h1>
+    </div>
+  </div>
 );
 
 export default NotFoundPage;

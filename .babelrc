@@ -3,7 +3,9 @@
     [
       "@babel/preset-env",
       {
-        "modules": false
+        "modules": false,
+        "corejs": "3",
+        "useBuiltIns": "entry"
       }
     ],
     "@babel/preset-react",
@@ -15,5 +17,6 @@
       }
     ]
   ],
-  "plugins": ["@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
+  "plugins": [
+    "@babel/plugin-transform-runtime", "@babel/plugin-proposal-class-properties"]
 }

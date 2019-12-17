@@ -17,7 +17,7 @@ node_modules/
 # Yarn Integrity file
 .yarn-integrity
 
-# Environment properties
+# Environment variables file
 .env.*
 
 # Compiled output
