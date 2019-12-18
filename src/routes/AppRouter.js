@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import HomePage from '../components/pages/HomePage';
-import AboutPage from '../components/pages/AboutPage';
-import NotFoundPage from '../components/pages/NotFoundPage';
+const HomePage = lazy(() => import('../components/pages/HomePage'));
+const AboutPage = lazy(() => import('../components/pages/AboutPage'));
+const NotFoundPage = lazy(() => import('../components/pages/NotFoundPage'));
 
 const AppRouter = () => (
   <Router>
-    <div>
+    <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route path="/about" component={AboutPage} />
         <Route path="/" exact component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </Suspense>
   </Router>
 );
 

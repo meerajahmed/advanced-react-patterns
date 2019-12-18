@@ -6,7 +6,8 @@ const config = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash:8].js'
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].js'
   },
   devtool: 'source-map',
   devServer: {
@@ -37,7 +38,18 @@ const config = {
       filename: './index.html',
       favicon: './src/static/icons/favicon.png'
     })
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
+  }
 };
 
 module.exports = config;

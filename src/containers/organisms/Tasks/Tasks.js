@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addTaskAsync, updateTaskStatus } from './Tasks.actions';
 import Tasks from '../../../components/organisms/Tasks';
 
-const mapStateToProps = state => ({ tasks: state });
+const mapStateToProps = ({ tasks }) => ({ tasks });
 
 const mapDispatchToProps = dispatch => ({
   handleAddTask: task => dispatch(addTaskAsync(task)),
