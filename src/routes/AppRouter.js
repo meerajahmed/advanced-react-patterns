@@ -19,3 +19,5 @@ const AppRouter = () => (
 
 export default AppRouter;
 // testing pre-commit hooks
+const foo = 'bar';
+console.log(foo);
