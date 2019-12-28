@@ -32,9 +32,14 @@
   ],
   "root": true,
   "rules": {
+    "no-console": "error",
     "react/jsx-filename-extension": [
       "warn",
-      { "extensions": [".js"] }
+      {
+        "extensions": [
+          ".js"
+        ]
+      }
     ]
   }
 }
