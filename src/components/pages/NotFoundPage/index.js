@@ -5,7 +5,8 @@ const NotFoundPage = () => (
   <div className="py-2">
     <div className="container-fluid">
       <h1 className="display-3">
-        404 - <Link to="/">Go home</Link>
+        {'404 - '}
+        <Link to="/">Go home</Link>
       </h1>
     </div>
   </div>

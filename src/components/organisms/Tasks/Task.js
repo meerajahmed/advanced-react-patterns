@@ -4,14 +4,18 @@ import AddTask from '../../molecules/AddTask';
 import TaskListView from '../../molecules/TaskListView';
 import { TASK_NOT_STARTED, TASK_IN_PROGRESS, TASK_COMPLETED } from '../../atoms/Task';
 
-const Tasks = props => (
+const Tasks = ({ handleAddTask, handleStatusChange, tasks }) => (
   <div className="container my-5">
-    <AddTask handleAddTask={props.handleAddTask} />
-    {props.tasks.length > 0 && (
-      <TaskListView tasks={props.tasks} handleStatusChange={props.handleStatusChange} />
-    )}
+    <AddTask handleAddTask={handleAddTask} />
+    {tasks.length > 0 && <TaskListView tasks={tasks} handleStatusChange={handleStatusChange} />}
   </div>
 );
+
+Tasks.defaultProps = {
+  tasks: [],
+  handleAddTask: () => {},
+  handleStatusChange: () => {}
+};
 
 Tasks.propTypes = {
   tasks: PropTypes.arrayOf(

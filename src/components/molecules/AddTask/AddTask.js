@@ -5,11 +5,14 @@ import Button from '@material-ui/core/Button';
 import { TASK_NOT_STARTED } from '../../atoms/Task';
 
 export default class AddTask extends Component {
-  state = {
-    title: '',
-    description: '',
-    isFormVisible: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+      description: '',
+      isFormVisible: false
+    };
+  }
 
   handleCreateTask = () => {
     this.setState(() => ({
@@ -29,14 +32,16 @@ export default class AddTask extends Component {
 
   handleAddTask = event => {
     event.preventDefault();
-    if (this.state.title || this.state.description) {
+    const { description, title } = this.state;
+    if (title || description) {
       const task = {
         id: uuid(),
-        title: this.state.title,
-        description: this.state.description,
+        title,
+        description,
         status: TASK_NOT_STARTED
       };
-      this.props.handleAddTask(task);
+      const { handleAddTask } = this.props;
+      handleAddTask(task);
       this.setState(() => ({
         title: '',
         description: '',
@@ -46,6 +51,7 @@ export default class AddTask extends Component {
   };
 
   render() {
+    const { isFormVisible, title, description } = this.state;
     return (
       <div>
         <div className="d-flex justify-content-end">
@@ -53,14 +59,14 @@ export default class AddTask extends Component {
             + New Task
           </button>
         </div>
-        {this.state.isFormVisible && (
+        {isFormVisible && (
           <form className="mt-3" onSubmit={this.handleAddTask}>
             <div className="form-group">
               <input
                 type="text"
                 className="form-control"
                 placeholder="title"
-                value={this.state.title}
+                value={title}
                 onChange={event => this.handleTitleChange(event.target.value)}
               />
             </div>
@@ -68,7 +74,7 @@ export default class AddTask extends Component {
               <textarea
                 className="form-control"
                 placeholder="description"
-                value={this.state.description}
+                value={description}
                 onChange={event => this.handleDescriptionChange(event.target.value)}
               />
             </div>
@@ -83,5 +89,5 @@ export default class AddTask extends Component {
 }
 
 AddTask.propTypes = {
-  handleAddTask: PropTypes.func
+  handleAddTask: PropTypes.func.isRequired
 };
