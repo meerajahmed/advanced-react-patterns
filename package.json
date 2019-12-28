@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open",
-    "lint": "eslint --fix ./src",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "stats": "webpack --profile --json > stats.json"
   },
   "repository": {
@@ -24,6 +25,8 @@
   "homepage": "https://github.com/meerajahmed/react-starter-kit#readme",
   "dependencies": {
     "@babel/runtime": "^7.7.4",
+    "@material-ui/core": "^4.8.0",
+    "@material-ui/icons": "^4.5.1",
     "core-js": "^3.5.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -44,14 +47,25 @@
     "@babel/preset-react": "^7.7.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "3.0.7",
+    "husky": "^3.1.0",
+    "precise-commits": "^1.0.2",
     "prettier": "1.19.1",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "precise-commits"
+    }
   }
 }

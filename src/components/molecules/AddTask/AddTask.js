@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'uuid';
+import Button from '@material-ui/core/Button';
 import { TASK_NOT_STARTED } from '../../atoms/Task';
 
 export default class AddTask extends Component {
@@ -71,9 +72,9 @@ export default class AddTask extends Component {
                 onChange={event => this.handleDescriptionChange(event.target.value)}
               />
             </div>
-            <button type="submit" className="btn btn-outline-success">
+            <Button type="submit" variant="outlined" color="primary">
               Save
-            </button>
+            </Button>
           </form>
         )}
       </div>
