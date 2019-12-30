@@ -13,8 +13,8 @@ const AppRouter = () => (
     <NavBar />
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
-        <Route path="/about" component={AboutPage} />
-        <Route path="/" exact component={HomePage} />
+        <Route path={process.env.ROUTE_ABOUT} component={AboutPage} />
+        <Route path={process.env.ROUTE_HOME} exact component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Suspense>

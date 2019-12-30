@@ -16,10 +16,10 @@ const NavBar = () => {
           <Typography className={classes.grow} variant="h6">
             React Starter Kit
           </Typography>
-          <Button color="inherit" component={RouterLink} to="/">
+          <Button color="inherit" component={RouterLink} to={process.env.ROUTE_HOME}>
             Home
           </Button>
-          <Button color="inherit" component={RouterLink} to="/about">
+          <Button color="inherit" component={RouterLink} to={process.env.ROUTE_ABOUT}>
             About
           </Button>
         </Toolbar>
