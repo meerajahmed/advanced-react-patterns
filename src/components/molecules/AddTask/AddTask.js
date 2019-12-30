@@ -1,93 +1,102 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import uuid from 'uuid';
 import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
+import Grid from '@material-ui/core/Grid';
+import Fab from '@material-ui/core/Fab';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
+import CardActions from '@material-ui/core/CardActions';
+import Box from '@material-ui/core/Box';
+import uniqueId from 'lodash.uniqueid';
 import { TASK_NOT_STARTED } from '../../atoms/Task';
+import useStyles from './AddTask.style';
 
-export default class AddTask extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      description: '',
-      isFormVisible: false
-    };
-  }
+const AddTask = props => {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const classes = useStyles();
 
-  handleCreateTask = () => {
-    this.setState(() => ({
-      title: '',
-      description: '',
-      isFormVisible: true
-    }));
+  const handleCreateTask = () => {
+    setTitle('');
+    setDescription('');
+    setIsFormVisible(true);
   };
 
-  handleTitleChange = title => {
-    this.setState(() => ({ title }));
+  const handleTitleChange = _title => {
+    setTitle(_title);
   };
 
-  handleDescriptionChange = description => {
-    this.setState(() => ({ description }));
+  const handleDescriptionChange = _description => {
+    setDescription(_description);
   };
 
-  handleAddTask = event => {
+  const handleAddTask = event => {
     event.preventDefault();
-    const { description, title } = this.state;
     if (title || description) {
       const task = {
-        id: uuid(),
+        id: uniqueId('task_'),
         title,
         description,
         status: TASK_NOT_STARTED
       };
-      const { handleAddTask } = this.props;
-      handleAddTask(task);
-      this.setState(() => ({
-        title: '',
-        description: '',
-        isFormVisible: false
-      }));
+      props.handleAddTask(task);
+      setTitle('');
+      setDescription('');
+      setIsFormVisible(false);
     }
   };
 
-  render() {
-    const { isFormVisible, title, description } = this.state;
-    return (
-      <div>
-        <div className="d-flex justify-content-end">
-          <button type="button" className="btn btn-outline-primary" onClick={this.handleCreateTask}>
-            + New Task
-          </button>
-        </div>
-        {isFormVisible && (
-          <form className="mt-3" onSubmit={this.handleAddTask}>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="title"
-                value={title}
-                onChange={event => this.handleTitleChange(event.target.value)}
-              />
-            </div>
-            <div className="form-group">
-              <textarea
-                className="form-control"
-                placeholder="description"
-                value={description}
-                onChange={event => this.handleDescriptionChange(event.target.value)}
-              />
-            </div>
-            <Button type="submit" variant="outlined" color="primary">
-              Save
-            </Button>
+  return (
+    <>
+      <Grid container justify="flex-end" spacing={2}>
+        <Fab color="primary" aria-label="add" onClick={handleCreateTask}>
+          <AddIcon />
+        </Fab>
+      </Grid>
+      {isFormVisible && (
+        <Grid container justify="center">
+          <form noValidate autoComplete="off" onSubmit={handleAddTask}>
+            <Card className={classes.card}>
+              <CardContent>
+                <Box my={4}>
+                  <TextField
+                    id="title"
+                    label="Title"
+                    fullWidth
+                    my={4}
+                    value={title}
+                    onChange={event => handleTitleChange(event.target.value)}
+                  />
+                </Box>
+                <Box my={4}>
+                  <TextField
+                    id="description"
+                    label="Description"
+                    fullWidth
+                    my={4}
+                    value={description}
+                    onChange={event => handleDescriptionChange(event.target.value)}
+                  />
+                </Box>
+              </CardContent>
+              <CardActions>
+                <Button type="submit" color="primary">
+                  Save
+                </Button>
+              </CardActions>
+            </Card>
           </form>
-        )}
-      </div>
-    );
-  }
-}
+        </Grid>
+      )}
+    </>
+  );
+};
 
 AddTask.propTypes = {
   handleAddTask: PropTypes.func.isRequired
 };
+
+export default AddTask;

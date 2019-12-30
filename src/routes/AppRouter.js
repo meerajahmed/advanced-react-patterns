@@ -1,12 +1,16 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import NavBar from '../components/molecules/NavBar/NavBar';
 
-const HomePage = lazy(() => import('../components/pages/HomePage'));
-const AboutPage = lazy(() => import('../components/pages/AboutPage'));
-const NotFoundPage = lazy(() => import('../components/pages/NotFoundPage'));
+const HomePage = lazy(() => import(/* webpackPreload: true */ '../components/pages/HomePage'));
+const AboutPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/AboutPage'));
+const NotFoundPage = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/NotFoundPage')
+);
 
 const AppRouter = () => (
   <Router>
+    <NavBar />
     <Suspense fallback={<div>Loading...</div>}>
       <Switch>
         <Route path="/about" component={AboutPage} />

@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
 import TaskList from '../TaskList';
 import { TASK_NOT_STARTED, TASK_IN_PROGRESS, TASK_COMPLETED } from '../../atoms/Task';
 
 const TaskListView = ({ handleStatusChange, tasks }) => {
   return (
-    <div className="mt-5">
+    <Box mt={5}>
       <TaskList tasks={tasks} select={TASK_NOT_STARTED} handleStatusChange={handleStatusChange} />
       <TaskList tasks={tasks} select={TASK_IN_PROGRESS} handleStatusChange={handleStatusChange} />
       <TaskList tasks={tasks} select={TASK_COMPLETED} handleStatusChange={handleStatusChange} />
-    </div>
+    </Box>
   );
 };
 

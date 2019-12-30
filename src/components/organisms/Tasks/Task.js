@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Box from '@material-ui/core/Box';
 import AddTask from '../../molecules/AddTask';
 import TaskListView from '../../molecules/TaskListView';
 import { TASK_NOT_STARTED, TASK_IN_PROGRESS, TASK_COMPLETED } from '../../atoms/Task';
 
 const Tasks = ({ handleAddTask, handleStatusChange, tasks }) => (
-  <div className="container my-5">
+  <Box my={4}>
     <AddTask handleAddTask={handleAddTask} />
     {tasks.length > 0 && <TaskListView tasks={tasks} handleStatusChange={handleStatusChange} />}
-  </div>
+  </Box>
 );
 
 Tasks.defaultProps = {
