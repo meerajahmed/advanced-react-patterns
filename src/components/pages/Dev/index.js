@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import BasicUsage from '../../organisms/FormExamples/BasicUsage';
 
-const DevPage = () => {
+const Dev = () => {
   return (
     <Container>
       <BasicUsage />
@@ -10,4 +10,4 @@ const DevPage = () => {
   );
 };
 
-export default DevPage;
+export default Dev;

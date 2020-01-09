@@ -8,7 +8,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Paper from '@material-ui/core/Paper';
 import { Box } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import useStyles from './BasicUsage.style';
+import useStyles from './useStyles';
 
 const BasicUsage = () => {
   const { handleSubmit, register } = useForm();

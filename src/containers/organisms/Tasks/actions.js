@@ -1,4 +1,4 @@
-import { ADD_TASK, ADD_TASK_ASYNC, UPDATE_TASK_STATUS } from './Tasks.constants';
+import { ADD_TASK, ADD_TASK_ASYNC, UPDATE_TASK_STATUS } from './constants';
 
 export const addTask = ({ task }) => ({
   type: ADD_TASK,

@@ -1,4 +1,4 @@
-import { ADD_TASK, UPDATE_TASK_STATUS } from './Tasks.constants';
+import { ADD_TASK, UPDATE_TASK_STATUS } from './constants';
 
 export default (state = [], { type, payload }) => {
   switch (type) {

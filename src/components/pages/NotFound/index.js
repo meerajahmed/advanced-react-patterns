@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotFoundPage = () => (
+const NotFound = () => (
   <div className="py-2">
     <div className="container-fluid">
       <h1 className="display-3">
@@ -12,4 +12,4 @@ const NotFoundPage = () => (
   </div>
 );
 
-export default NotFoundPage;
+export default NotFound;

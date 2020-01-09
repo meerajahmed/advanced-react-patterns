@@ -1,6 +1,6 @@
 import { take, put, delay, actionChannel } from 'redux-saga/effects';
-import { ADD_TASK_ASYNC } from './Tasks.constants';
-import { addTask } from './Tasks.actions';
+import { ADD_TASK_ASYNC } from './constants';
+import { addTask } from './actions';
 
 export default function* addTaskAsync() {
   // buffer incoming ADD_TASK_ASYNC messages if the Saga is not yet ready to take them
