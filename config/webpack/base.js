@@ -1,6 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const paths = require('../paths');
 
 const config = {
@@ -27,7 +26,6 @@ const config = {
     ]
   },
   plugins: [
-    new Dotenv(),
     new HtmlWebpackPlugin({
       template: paths.template,
       favicon: paths.favicon

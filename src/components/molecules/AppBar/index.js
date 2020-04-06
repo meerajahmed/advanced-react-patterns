@@ -1,31 +1,36 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
-import Container from '@material-ui/core/Container';
 import MuiAppBar from '@material-ui/core/AppBar';
-import { Link as RouterLink } from 'react-router-dom';
-import useStyles from './useStyles';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Box from '@material-ui/core/Box';
 
-const Index = () => {
-  const classes = useStyles();
+const AppBar = props => {
+  const { setOpen } = props;
   return (
     <MuiAppBar position="static">
-      <Container>
-        <Toolbar>
-          <div className={classes.grow} />
-          <Button color="inherit" component={RouterLink} to={process.env.ROUTE_HOME}>
-            Home
-          </Button>
-          <Button color="inherit" component={RouterLink} to={process.env.ROUTE_ABOUT}>
-            About
-          </Button>
-          <Button color="inherit" component={RouterLink} to={process.env.ROUTE_DEV}>
-            Dev
-          </Button>
-        </Toolbar>
-      </Container>
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={() => setOpen(true)}
+          edge="start"
+        >
+          <MenuIcon />
+        </IconButton>
+        <Box flexGrow={1} />
+      </Toolbar>
     </MuiAppBar>
   );
 };
 
-export default Index;
+AppBar.defaultProps = {
+  setOpen: () => {}
+};
+
+AppBar.propTypes = {
+  setOpen: PropTypes.func
+};
+
+export default AppBar;
