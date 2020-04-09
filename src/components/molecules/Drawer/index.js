@@ -21,7 +21,7 @@ const Drawer = props => {
       <div className={classes.drawerHeader} />
       <Divider />
       <List>
-        <ListItemLink to={process.env.ROUTE_HOME} primary="Home" />
+        <ListItemLink to={process.env.ROUTE_ROOT} primary="0 - Build switch" />
         <ListItemLink to={process.env.ROUTE_DEV} primary="Dev" />
         <ListItemLink to={process.env.ROUTE_TASK} primary="Task" />
         <ListItemLink to={process.env.ROUTE_ABOUT} primary="About" />

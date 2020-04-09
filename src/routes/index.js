@@ -13,7 +13,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_DEV} component={DevPage} />
       <Route path={process.env.ROUTE_ABOUT} component={AboutPage} />
       <Route path={process.env.ROUTE_TASK} component={TaskPage} />
-      <Route path={process.env.ROUTE_HOME} exact component={HomePage} />
+      <Route path={process.env.ROUTE_ROOT} exact component={HomePage} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
