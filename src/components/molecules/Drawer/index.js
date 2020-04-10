@@ -22,10 +22,8 @@ const Drawer = props => {
       <Divider />
       <List>
         <ListItemLink to={process.env.ROUTE_ROOT} primary="00 - Building switch" />
-        <ListItemLink to={process.env.ROUTE_TOGGLE} primary="01 - Building Toggle" />
-        <ListItemLink to={process.env.ROUTE_DEV} primary="Dev" />
-        <ListItemLink to={process.env.ROUTE_TASK} primary="Task" />
-        <ListItemLink to={process.env.ROUTE_ABOUT} primary="About" />
+        <ListItemLink to={process.env.ROUTE_TOGGLE} primary="01 - Building toggle" />
+        <ListItemLink to={process.env.ROUTE_COMPOUND} primary="02 - Compound components" />
       </List>
     </MuiDrawer>
   );

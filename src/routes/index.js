@@ -8,6 +8,9 @@ const AboutPage = lazy(() => import(/* webpackPrefetch: true */ '../components/p
 const BuildingToggle = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/BuildingToggle')
 );
+const CompoundComponents = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/CompoundComponents')
+);
 const NotFoundPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/NotFound'));
 
 const Routes = () => (
@@ -18,6 +21,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_TASK} component={TaskPage} />
       <Route path={process.env.ROUTE_ROOT} exact component={HomePage} />
       <Route path={process.env.ROUTE_TOGGLE} exact component={BuildingToggle} />
+      <Route path={process.env.ROUTE_COMPOUND} exact component={CompoundComponents} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
