@@ -1,4 +1,4 @@
 import omitDeep from './omitDeep';
+import componentHasChild from './componentHasChild';
 
-// eslint-disable-next-line import/prefer-default-export
-export { omitDeep };
+export { omitDeep, componentHasChild };
