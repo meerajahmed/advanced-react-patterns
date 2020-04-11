@@ -1,4 +1,4 @@
-import React, { cloneElement, Children, Component } from 'react';
+import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -8,13 +8,23 @@ import Typography from '@material-ui/core/Typography';
 import Switch from '../../molecules/Switch';
 import styles from './styles';
 
+const ToggleContext = createContext();
+
 class Toggle extends Component {
   // static properties won't have access to toggle instance - 'this'
-  static On = props => (props.on ? props.children : null);
+  static On = props => (
+    <ToggleContext.Consumer>{({ on }) => (on ? props.children : null)}</ToggleContext.Consumer>
+  );
 
-  static Off = props => (props.on ? null : props.children);
+  static Off = props => (
+    <ToggleContext.Consumer>{({ on }) => (on ? null : props.children)}</ToggleContext.Consumer>
+  );
 
-  static Button = props => <Switch on={props.on} onClick={props.toggle} />;
+  static Button = () => (
+    <ToggleContext.Consumer>
+      {({ on, toggle }) => <Switch on={on} onClick={toggle} />}
+    </ToggleContext.Consumer>
+  );
 
   constructor(props) {
     super(props);
@@ -42,12 +52,7 @@ class Toggle extends Component {
       toggle,
       props: { children }
     } = this;
-    return Children.map(children, child =>
-      cloneElement(child, {
-        on,
-        toggle
-      })
-    );
+    return <ToggleContext.Provider value={{ on, toggle }}>{children}</ToggleContext.Provider>;
   }
 }
 
@@ -71,10 +76,10 @@ const Usage = props => {
     <Container>
       <Box my={8}>
         <Typography variant="h4" align="center" paragraph>
-          Compound Components
+          Flexible Compound Components
         </Typography>
         <Typography variant="body2" align="center">
-          Share implicit state among related components
+          Share implicit state even with the non-descendent children&#39;s
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center" my={8}>
@@ -82,7 +87,9 @@ const Usage = props => {
           <Toggle onToggle={onToggle}>
             <Toggle.On>The button is on</Toggle.On>
             <Toggle.Off>The button is off</Toggle.Off>
-            <Toggle.Button />
+            <div>
+              <Toggle.Button />
+            </div>
           </Toggle>
         </Paper>
       </Box>

@@ -1,6 +1,7 @@
 const styles = {
   root: {
     lineHeight: 0,
+    display: 'inline-block',
     marginTop: '16px'
   },
   input: {
