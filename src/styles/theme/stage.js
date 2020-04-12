@@ -1,7 +1,7 @@
 export default {
   paper: {
-    width: '28em',
-    height: '14em',
+    minWidth: '28em',
+    minHeight: '14em',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

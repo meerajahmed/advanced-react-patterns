@@ -20,6 +20,9 @@ const FlexibleCompoundComponents = lazy(() =>
 const FlexibleCompoundComponents1 = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/FlexibleCompoundComponents/extra1')
 );
+const RenderProps = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/RenderProps')
+);
 const NotFoundPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/NotFound'));
 
 const Routes = () => (
@@ -34,6 +37,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_COMPOUND_1} component={CompoundComponents1} />
       <Route path={process.env.ROUTE_FLEXIBLE_COMPOUND} component={FlexibleCompoundComponents} />
       <Route path={process.env.ROUTE_FLEXIBLE_COMPOUND_1} component={FlexibleCompoundComponents1} />
+      <Route path={process.env.ROUTE_RENDER_PROPS} component={RenderProps} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
