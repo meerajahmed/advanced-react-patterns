@@ -21,20 +21,21 @@ const Drawer = props => {
       <div className={classes.drawerHeader} />
       <Divider />
       <List>
-        <ListItemLink to={process.env.ROUTE_ROOT} primary="00 - Building switch" />
-        <ListItemLink to={process.env.ROUTE_TOGGLE} primary="01 - Building toggle" />
-        <ListItemLink to={process.env.ROUTE_COMPOUND} primary="02 - Compound components" />
-        <ListItemLink to={process.env.ROUTE_COMPOUND_1} primary="02.1 - Compound components" />
+        <ListItemLink to={process.env.ROUTE_ROOT} primary="0.0 - Building switch" />
+        <ListItemLink to={process.env.ROUTE_TOGGLE} primary="1.0 - Building toggle" />
+        <ListItemLink to={process.env.ROUTE_COMPOUND} primary="2.0 - Compound components" />
+        <ListItemLink to={process.env.ROUTE_COMPOUND_1} primary="2.1 - Compound components" />
         <ListItemLink
           to={process.env.ROUTE_FLEXIBLE_COMPOUND}
-          primary="03 - Flexible compound components"
+          primary="3.0 - Flexible compound components"
         />
         <ListItemLink
           to={process.env.ROUTE_FLEXIBLE_COMPOUND_1}
-          primary="03.1 - Flexible compound components"
+          primary="3.1 - Flexible compound components"
         />
-        <ListItemLink to={process.env.ROUTE_RENDER_PROPS} primary="04 - Render props" />
-        <ListItemLink to={process.env.ROUTE_PROP_COLLECTIONS} primary="05 - Prop collections" />
+        <ListItemLink to={process.env.ROUTE_RENDER_PROPS} primary="4.0 - Render props" />
+        <ListItemLink to={process.env.ROUTE_PROP_COLLECTIONS} primary="5.0 - Prop collections" />
+        <ListItemLink to={process.env.ROUTE_PROP_GETTERS} primary="6.0 - Prop getters" />
       </List>
     </MuiDrawer>
   );

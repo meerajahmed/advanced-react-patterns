@@ -79,7 +79,7 @@ const Usage = props => {
               >
                 {on ? 'The button is on' : 'The button is off'}
                 <Switch on={on} onClick={toggle} />
-                <Box my={4}>
+                <Box mt={4}>
                   <Button
                     aria-label="custom-button"
                     onClick={toggle}

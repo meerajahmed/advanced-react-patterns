@@ -24,9 +24,11 @@ const FlexibleCompoundComponents1 = lazy(() =>
 const RenderProps = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/RenderProps')
 );
-
 const PropCollections = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/PropCollections')
+);
+const PropGetters = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/PropGetters')
 );
 
 const Routes = () => (
@@ -43,6 +45,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_FLEXIBLE_COMPOUND_1} component={FlexibleCompoundComponents1} />
       <Route path={process.env.ROUTE_RENDER_PROPS} component={RenderProps} />
       <Route path={process.env.ROUTE_PROP_COLLECTIONS} component={PropCollections} />
+      <Route path={process.env.ROUTE_PROP_GETTERS} component={PropGetters} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>

@@ -95,7 +95,7 @@ const Usage = props => {
               >
                 {on ? 'The button is on' : 'The button is off'}
                 <Switch {...togglerProps} on={on} />
-                <Box my={4}>
+                <Box mt={4}>
                   <Button
                     {...togglerProps}
                     aria-label="custom-button"
