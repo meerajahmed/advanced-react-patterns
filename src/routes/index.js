@@ -5,6 +5,7 @@ const HomePage = lazy(() => import(/* webpackPreload: true */ '../components/pag
 const DevPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Dev'));
 const TaskPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Task'));
 const AboutPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/About'));
+const NotFoundPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/NotFound'));
 const BuildingToggle = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/BuildingToggle')
 );
@@ -23,7 +24,10 @@ const FlexibleCompoundComponents1 = lazy(() =>
 const RenderProps = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/RenderProps')
 );
-const NotFoundPage = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/NotFound'));
+
+const PropCollections = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/PropCollections')
+);
 
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -38,6 +42,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_FLEXIBLE_COMPOUND} component={FlexibleCompoundComponents} />
       <Route path={process.env.ROUTE_FLEXIBLE_COMPOUND_1} component={FlexibleCompoundComponents1} />
       <Route path={process.env.ROUTE_RENDER_PROPS} component={RenderProps} />
+      <Route path={process.env.ROUTE_PROP_COLLECTIONS} component={PropCollections} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>

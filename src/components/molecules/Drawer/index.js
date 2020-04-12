@@ -34,6 +34,7 @@ const Drawer = props => {
           primary="03.1 - Flexible compound components"
         />
         <ListItemLink to={process.env.ROUTE_RENDER_PROPS} primary="04 - Render props" />
+        <ListItemLink to={process.env.ROUTE_PROP_COLLECTIONS} primary="05 - Prop collections" />
       </List>
     </MuiDrawer>
   );
