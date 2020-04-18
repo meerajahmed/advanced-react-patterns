@@ -62,8 +62,8 @@ const Usage = props => {
           Render Props
         </Typography>
         <Typography variant="body2" align="center">
-          Dynamic composition at render phase. More control over what is rendered and how its
-          rendered.
+          Dynamic composition at render phase. It allow users to be in control over the UI based on
+          state - more control over what is rendered and how it is rendered.
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center">

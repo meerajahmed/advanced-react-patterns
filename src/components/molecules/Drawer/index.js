@@ -37,6 +37,7 @@ const Drawer = props => {
         <ListItemLink to={process.env.ROUTE_PROP_COLLECTIONS} primary="5.0 - Prop collections" />
         <ListItemLink to={process.env.ROUTE_PROP_GETTERS} primary="6.0 - Prop getters" />
         <ListItemLink to={process.env.ROUTE_STATE_INITIALIZER} primary="7.0 - State initializer" />
+        <ListItemLink to={process.env.ROUTE_STATE_REDUCER} primary="8.0 - State reducer" />
       </List>
     </MuiDrawer>
   );
