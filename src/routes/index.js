@@ -39,6 +39,9 @@ const StateReducer = lazy(() =>
 const StateReducerTypes = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/StateReducerTypes')
 );
+const ControlProps = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/ControlProps')
+);
 
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -57,7 +60,8 @@ const Routes = () => (
       <Route path={process.env.ROUTE_PROP_GETTERS} component={PropGetters} />
       <Route path={process.env.ROUTE_STATE_INITIALIZER} component={StateInitializer} />
       <Route path={process.env.ROUTE_STATE_REDUCER} component={StateReducer} />
-      <Route path={process.env.ROUTE_STATE_REDUCER_TYPES} component={StateReducerTypes} />
+      <Route path={process.env.ROUTE_STATE_REDUCER_TYPE} component={StateReducerTypes} />
+      <Route path={process.env.ROUTE_CONTROL_PROPS} component={ControlProps} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
