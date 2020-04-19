@@ -11,6 +11,11 @@ import styles from './styles';
 import Toggle from './Toggle';
 
 class Usage extends Component {
+  // eslint-disable-next-line react/sort-comp
+  static actionType = {
+    force: '__usage_force__'
+  };
+
   constructor(props) {
     super(props);
     this.initialState = { timesClicked: 0 };
@@ -19,6 +24,10 @@ class Usage extends Component {
 
   toggleStateReducer = (state, changes) => {
     const { timesClicked } = this.state;
+    if (changes.type === Usage.actionType.force) {
+      // the original changes of toggle component
+      return changes;
+    }
     if (timesClicked > 3) {
       // override original toggle behaviour for your use case
       return { ...changes, on: false };
@@ -50,8 +59,8 @@ class Usage extends Component {
             State reducer
           </Typography>
           <Typography variant="body2" align="center">
-            Making your component&#39;s opinion overridable - more flexible. It allow users to be in
-            control over logic - toggle&#39;s internal state.
+            Making your component&#39;s opinion overridable - more flexible. It allows user to be in
+            control over logic based on action types.
           </Typography>
         </Box>
         <Box display="flex" justifyContent="center">
@@ -62,7 +71,7 @@ class Usage extends Component {
               onToggle={this.onToggle}
               onReset={this.onReset}
             >
-              {({ on, reset, getTogglerProps }) => (
+              {({ on, toggle, reset, getTogglerProps }) => (
                 <Box
                   display="flex"
                   flexDirection="column"
@@ -80,6 +89,15 @@ class Usage extends Component {
                     </Typography>
                   )}
                   <Switch {...getTogglerProps({ on })} />
+                  <Box mt={4}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() => toggle({ type: Usage.actionType.force })}
+                    >
+                      force toggle
+                    </Button>
+                  </Box>
                   <Box mt={4}>
                     <Button variant="outlined" color="primary" onClick={reset}>
                       Reset
