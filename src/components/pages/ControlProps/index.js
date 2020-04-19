@@ -12,11 +12,12 @@ import isNullOrUndefined from '../../../utils/isNullOrUndefined';
 class Toggle extends Component {
   constructor(props) {
     super(props);
+    // eslint-disable-next-line react/no-unused-state
     this.state = { on: false };
   }
 
-  getState() {
-    const { props, state } = this;
+  getState(state = this.state) {
+    const { props } = this;
     /*
      * Make the `getState` function generic enough to support all state in
      * `this.state` even if we add any number of properties to state.
@@ -36,23 +37,39 @@ class Toggle extends Component {
   }
 
   toggle = () => {
-    const { onToggle } = this.props;
-    if (this.isControlled('on')) {
-      onToggle(!this.getState().on);
-    } else {
-      this.setState(
-        prevState => {
-          const { on } = prevState;
-          return {
-            on: !on
-          };
-        },
-        () => {
-          onToggle(this.getState().on);
-        }
-      );
-    }
+    this.internalSetState(({ on }) => ({ on: !on }));
   };
+
+  internalSetState(changes, callback) {
+    const { onStateChange } = this.props;
+    let allChanges = {};
+    this.setState(
+      state => {
+        const combinedState = this.getState(state);
+        const changesObject = typeof changes === 'function' ? changes(combinedState) : changes;
+        allChanges = changesObject;
+        // find only state changes
+        const nonControlledChanges = Object.entries(changesObject).reduce(
+          (newChanges, [key, value]) => {
+            if (!this.isControlled(key)) {
+              return {
+                ...newChanges,
+                [key]: value
+              };
+            }
+            return newChanges;
+          },
+          {}
+        );
+        return Object.keys(nonControlledChanges).length ? nonControlledChanges : null;
+      },
+      () => {
+        onStateChange(allChanges);
+        // eslint-disable-next-line no-unused-expressions
+        callback && callback();
+      }
+    );
+  }
 
   isControlled(prop) {
     const { [prop]: controlledProp } = this.props;
@@ -66,21 +83,24 @@ class Toggle extends Component {
 
 Toggle.defaultProps = {
   on: null,
-  onToggle: () => {}
+  onStateChange: () => {}
 };
 
 Toggle.propTypes = {
   on: PropTypes.bool,
-  onToggle: PropTypes.func
+  onStateChange: PropTypes.func
 };
 
 const Usage = props => {
   const { classes } = props;
   const [bothOn, setBothOn] = useState(false);
-  const onToggle = on => {
-    setBothOn(on);
+  const onStateChange = changes => {
+    // eslint-disable-next-line no-prototype-builtins
+    if (changes.hasOwnProperty('on')) {
+      setBothOn(changes.on);
+    }
     // eslint-disable-next-line no-console
-    console.log('onToggle', on);
+    console.log('onStateChange', changes);
   };
   return (
     <Container>
@@ -95,8 +115,8 @@ const Usage = props => {
       </Box>
       <Box display="flex" justifyContent="center" my={8}>
         <Paper className={classes.paper}>
-          <Toggle on={bothOn} onToggle={onToggle} />
-          <Toggle on={bothOn} onToggle={onToggle} />
+          <Toggle on={bothOn} onStateChange={onStateChange} />
+          <Toggle on={bothOn} onStateChange={onStateChange} />
         </Paper>
       </Box>
     </Container>
