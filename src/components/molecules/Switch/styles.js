@@ -2,7 +2,10 @@ const styles = {
   root: {
     lineHeight: 0,
     display: 'inline-block',
-    marginTop: '16px'
+    marginTop: '16px',
+    '&:last-child': {
+      marginBottom: '16px'
+    }
   },
   input: {
     height: '1px',

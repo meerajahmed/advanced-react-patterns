@@ -17,9 +17,22 @@ class Toggle extends Component {
 
   getState() {
     const { props, state } = this;
-    return {
-      on: this.isControlled('on') ? props.on : state.on
-    };
+    /*
+     * Make the `getState` function generic enough to support all state in
+     * `this.state` even if we add any number of properties to state.
+     * */
+    return Object.entries(state).reduce((combinedState, [key, value]) => {
+      if (this.isControlled(key)) {
+        return {
+          ...combinedState,
+          [key]: props[key]
+        };
+      }
+      return {
+        ...combinedState,
+        [key]: value
+      };
+    }, {});
   }
 
   toggle = () => {
