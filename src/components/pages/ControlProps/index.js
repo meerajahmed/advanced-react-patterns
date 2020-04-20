@@ -1,15 +1,28 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
 import Switch from '../../molecules/Switch';
 import styles from './styles';
 import isNullOrUndefined from '../../../utils/isNullOrUndefined';
 
 class Toggle extends Component {
+  /*
+   * Add support for a `type` in the changes so consumers can differentiate the different state updates
+   * */
+
+  // eslint-disable-next-line react/sort-comp
+  static actionTypes = {
+    toggle: '__toggle__',
+    toggleOn: '__toggle_on__',
+    toggleOff: '__toggle_off__'
+  };
+
   constructor(props) {
     super(props);
     // eslint-disable-next-line react/no-unused-state
@@ -36,10 +49,7 @@ class Toggle extends Component {
     }, {});
   }
 
-  toggle = () => {
-    this.internalSetState(({ on }) => ({ on: !on }));
-  };
-
+  // changes -> change proposal will also have type details
   internalSetState(changes, callback) {
     const { onStateChange } = this.props;
     let allChanges = {};
@@ -48,8 +58,10 @@ class Toggle extends Component {
         const combinedState = this.getState(state);
         const changesObject = typeof changes === 'function' ? changes(combinedState) : changes;
         allChanges = changesObject;
-        // find only state changes
-        const nonControlledChanges = Object.entries(changesObject).reduce(
+        const { type: ignoredType, ...onlyChanges } = changesObject;
+
+        // filter only state changes
+        const nonControlledChanges = Object.entries(onlyChanges).reduce(
           (newChanges, [key, value]) => {
             if (!this.isControlled(key)) {
               return {
@@ -64,7 +76,8 @@ class Toggle extends Component {
         return Object.keys(nonControlledChanges).length ? nonControlledChanges : null;
       },
       () => {
-        onStateChange(allChanges);
+        // send all sate changes including type information and current state
+        onStateChange(allChanges, this.getState());
         // eslint-disable-next-line no-unused-expressions
         callback && callback();
       }
@@ -76,8 +89,33 @@ class Toggle extends Component {
     return !isNullOrUndefined(controlledProp);
   }
 
+  toggle = ({ on: newState, type = Toggle.actionTypes.toggle } = {}) => {
+    this.internalSetState(({ on }) => ({
+      on: typeof newState === 'boolean' ? newState : !on,
+      type
+    }));
+  };
+
+  handleSwitchClick = () => {
+    this.toggle();
+  };
+
+  handleOffClick = () => this.toggle({ on: false, type: Toggle.actionTypes.toggleOff });
+
+  handleOnClick = () => this.toggle({ on: true, type: Toggle.actionTypes.toggleOn });
+
   render() {
-    return <Switch on={this.getState().on} onClick={this.toggle} />;
+    return (
+      <>
+        <Switch on={this.getState().on} onClick={this.handleSwitchClick} />
+        <Box display="flex" justifyContent="center" my={4}>
+          <ButtonGroup color="primary" aria-label="Toggle button">
+            <Button onClick={this.handleOffClick}>off</Button>
+            <Button onClick={this.handleOnClick}>on</Button>
+          </ButtonGroup>
+        </Box>
+      </>
+    );
   }
 }
 
@@ -94,13 +132,20 @@ Toggle.propTypes = {
 const Usage = props => {
   const { classes } = props;
   const [bothOn, setBothOn] = useState(false);
-  const onStateChange = changes => {
-    // eslint-disable-next-line no-prototype-builtins
-    if (changes.hasOwnProperty('on')) {
+  const lastWasButton = useRef(false);
+  const onStateChange = (changes, currState) => {
+    const isButtonChange =
+      changes.type === Toggle.actionTypes.toggleOn || changes.type === Toggle.actionTypes.toggleOff;
+
+    if (changes.type === Toggle.actionTypes.toggle || (lastWasButton.current && isButtonChange)) {
       setBothOn(changes.on);
+      lastWasButton.current = false;
+    } else {
+      lastWasButton.current = true;
     }
+
     // eslint-disable-next-line no-console
-    console.log('onStateChange', changes);
+    console.log('onStateChange', changes, currState);
   };
   return (
     <Container>
