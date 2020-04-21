@@ -15,7 +15,7 @@ class Toggle extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { on: false };
+    this.state = { on: false, toggle: this.toggle };
   }
 
   toggle = () => {
@@ -35,11 +35,10 @@ class Toggle extends Component {
 
   render() {
     const { children } = this.props;
-    const { on } = this.state;
+    const ui = typeof children === 'function' ? children(this.state) : children;
     return (
-      <ToggleContext.Provider value={{ on, toggle: this.toggle }}>
-        {children}
-      </ToggleContext.Provider>
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      <ToggleContext.Provider value={this.state}>{ui}</ToggleContext.Provider>
     );
   }
 }
@@ -51,7 +50,7 @@ Toggle.defaultProps = {
 
 Toggle.propTypes = {
   onToggle: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func])
 };
 
 const Layer1 = () => <Layer2 />;
@@ -86,14 +85,12 @@ const Usage = props => {
           Provider pattern
         </Typography>
         <Typography variant="body2" align="center">
-          Access your data any where in the application tree without having to prop drill
+          Access your data from any where in the application tree without having to prop drill
         </Typography>
       </Box>
       <Box display="flex" justifyContent="center" my={8}>
         <Paper className={classes.paper}>
-          <Toggle onToggle={onToggle}>
-            <Layer1 />
-          </Toggle>
+          <Toggle onToggle={onToggle}>{() => <Layer1 />}</Toggle>
         </Paper>
       </Box>
     </Container>
