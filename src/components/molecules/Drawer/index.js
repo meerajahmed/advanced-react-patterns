@@ -43,6 +43,7 @@ const Drawer = props => {
           primary="9.0 - State reducer type"
         />
         <ListItemLink to={process.env.ROUTE_CONTROL_PROPS} primary="10.0 - Control props" />
+        <ListItemLink to={process.env.ROUTE_PROVIDER_PATTERN} primary="11.0 - Provider pattern" />
       </List>
     </MuiDrawer>
   );

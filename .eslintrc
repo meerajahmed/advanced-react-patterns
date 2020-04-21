@@ -46,6 +46,7 @@
     "react/jsx-wrap-multilines": [
       "error",
       { "arrow": true, "return": true, "declaration": true }
-    ]
+    ],
+    "react/sort-comp": "off"
   }
 }
