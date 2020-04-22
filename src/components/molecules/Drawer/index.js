@@ -44,6 +44,10 @@ const Drawer = props => {
         />
         <ListItemLink to={process.env.ROUTE_CONTROL_PROPS} primary="10.0 - Control props" />
         <ListItemLink to={process.env.ROUTE_PROVIDER_PATTERN} primary="11.0 - Provider pattern" />
+        <ListItemLink
+          to={process.env.ROUTE_HIGHER_ORDER_COMPONENTS}
+          primary="12.0 - Higher order components"
+        />
       </List>
     </MuiDrawer>
   );

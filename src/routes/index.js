@@ -45,6 +45,9 @@ const ControlProps = lazy(() =>
 const ProviderPattern = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/ProviderPattern')
 );
+const HigherOrderComponents = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/HigherOrderComponents')
+);
 
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -66,6 +69,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_STATE_REDUCER_TYPE} component={StateReducerTypes} />
       <Route path={process.env.ROUTE_CONTROL_PROPS} component={ControlProps} />
       <Route path={process.env.ROUTE_PROVIDER_PATTERN} component={ProviderPattern} />
+      <Route path={process.env.ROUTE_HIGHER_ORDER_COMPONENTS} component={HigherOrderComponents} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
