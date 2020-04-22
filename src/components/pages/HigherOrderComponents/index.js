@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { Component, createContext, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -55,15 +55,17 @@ Toggle.propTypes = {
 
 // eslint-disable-next-line no-shadow
 function withToggle(Component) {
-  function Wrapper(props) {
+  // handle prop namespace clashes by passing context in separate props - toggleContext
+  function Wrapper(props, ref) {
     return (
       <Toggle.Consumer>
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        {toggleContext => <Component toggle={toggleContext} {...props} />}
+        {toggleContext => <Component ref={ref} toggle={toggleContext} {...props} />}
       </Toggle.Consumer>
     );
   }
-  return Wrapper;
+  // Handle ref props properly using forwardRef
+  return forwardRef(Wrapper);
 }
 
 const Layer1 = () => <Layer2 />;
