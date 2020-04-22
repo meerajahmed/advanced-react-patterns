@@ -64,6 +64,7 @@ function withToggle(Component) {
       </Toggle.Consumer>
     );
   }
+  Wrapper.displayName = `withToggle(${Component.displayName || Component.name})`;
   // Handle ref props properly using forwardRef
   return forwardRef(Wrapper);
 }
