@@ -1,3 +1,4 @@
+// eslint-disable-next-line max-classes-per-file
 import React, { Component, createContext, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
@@ -5,6 +6,7 @@ import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import hoistNonReactStatics from 'hoist-non-react-statics';
 import Switch from '../../molecules/Switch';
 import styles from './styles';
 
@@ -66,17 +68,42 @@ function withToggle(Component) {
   }
   Wrapper.displayName = `withToggle(${Component.displayName || Component.name})`;
   // Handle ref props properly using forwardRef
-  return forwardRef(Wrapper);
+  // Forward all the static properties from the Component to the Wrapper
+  return hoistNonReactStatics(forwardRef(Wrapper), Component);
 }
 
 const Layer1 = () => <Layer2 />;
 
-const Layer2 = withToggle(({ toggle: { on } }) => (
+/*
+* const Layer2 = withToggle(({ toggle: { on } }) => (
   <>
     {on ? 'The button is on' : 'The button is off'}
     <Layer3 />
   </>
 ));
+*/
+// using HOC with static component
+const Layer2 = withToggle(
+  // eslint-disable-next-line react/prefer-stateless-function
+  class extends Component {
+    static messageOn = 'The button is on';
+
+    static messageOff = 'The button is off';
+
+    render() {
+      const {
+        // eslint-disable-next-line react/prop-types
+        toggle: { on }
+      } = this.props;
+      return (
+        <>
+          {on ? Layer2.messageOn : Layer2.messageOff}
+          <Layer3 />
+        </>
+      );
+    }
+  }
+);
 
 const Layer3 = () => <Layer4 />;
 
