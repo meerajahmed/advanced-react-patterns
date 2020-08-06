@@ -48,6 +48,12 @@ const Drawer = props => {
           to={process.env.ROUTE_HIGHER_ORDER_COMPONENTS}
           primary="12.0 - Higher order components"
         />
+        <ListItemLink
+          to={process.env.ROUTE_HIGHER_ORDER_COMPONENTS}
+          primary="12.0 - Higher order components"
+        />
+        <Divider />
+        <ListItemLink to={process.env.ROUTE_TOUCH_STATES} primary="1.0 Touch states" />
       </List>
     </MuiDrawer>
   );

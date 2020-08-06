@@ -51,6 +51,10 @@ const HigherOrderComponents = lazy(() =>
 
 const Hooks = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Hooks'));
 
+const TouchStates = lazy(() =>
+  import(/* webpackPrefetch: true */ '../components/pages/TouchStates')
+);
+
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Switch>
@@ -73,6 +77,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_PROVIDER_PATTERN} component={ProviderPattern} />
       <Route path={process.env.ROUTE_HIGHER_ORDER_COMPONENTS} component={HigherOrderComponents} />
       <Route path={process.env.ROUTE_HOOKS} component={Hooks} />
+      <Route path={process.env.ROUTE_TOUCH_STATES} component={TouchStates} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>
