@@ -54,6 +54,7 @@ const Drawer = props => {
         />
         <Divider />
         <ListItemLink to={process.env.ROUTE_TOUCH_STATES} primary="1.0 Touch states" />
+        <ListItemLink to={process.env.ROUTE_TOUCH_GESTURE} primary="2.0 Touch gesture" />
       </List>
     </MuiDrawer>
   );
