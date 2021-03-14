@@ -120,6 +120,7 @@ class SwipeButton extends Component {
     const differenceInX = this.initialTouchPos.x - this.lastTouchPos.x;
     // calculate new css transform position
     const newXTransform = `${this.currentXPosition - differenceInX}px`;
+    //  a CSS animation using the transform property looks much smoother than one using the left and top properties
     const transformStyle = `translateX(${newXTransform})`;
     this.setTransformStyle(transformStyle);
 

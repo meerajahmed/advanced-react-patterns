@@ -59,6 +59,8 @@ const TouchGesture = lazy(() =>
   import(/* webpackPrefetch: true */ '../components/pages/TouchGesture')
 );
 
+const CheckBox = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Checkbox'));
+
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Switch>
@@ -83,6 +85,7 @@ const Routes = () => (
       <Route path={process.env.ROUTE_HOOKS} component={Hooks} />
       <Route path={process.env.ROUTE_TOUCH_STATES} component={TouchStates} />
       <Route path={process.env.ROUTE_TOUCH_GESTURE} component={TouchGesture} />
+      <Route path={process.env.ROUTE_CHECK_BOX} component={CheckBox} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>

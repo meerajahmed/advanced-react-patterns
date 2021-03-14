@@ -151,7 +151,7 @@ const Usage = props => {
     <Container>
       <Box my={8}>
         <Typography variant="h4" align="center">
-          Controll props
+          Control props
         </Typography>
         <Typography variant="body2" align="center">
           User controls the state of Toggle by providing state from props and Toggle component
