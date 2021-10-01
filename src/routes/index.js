@@ -60,6 +60,11 @@ const TouchGesture = lazy(() =>
 );
 
 const CheckBox = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Checkbox'));
+const Radio = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Radio'));
+const Stepper = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Stepper'));
+const Accordion = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Accordion'));
+const NativeSelect = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/NativeSelect'));
+const Collapse = lazy(() => import(/* webpackPrefetch: true */ '../components/pages/Collapse'));
 
 const Routes = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -86,6 +91,11 @@ const Routes = () => (
       <Route path={process.env.ROUTE_TOUCH_STATES} component={TouchStates} />
       <Route path={process.env.ROUTE_TOUCH_GESTURE} component={TouchGesture} />
       <Route path={process.env.ROUTE_CHECK_BOX} component={CheckBox} />
+      <Route path={process.env.ROUTE_RADIO} component={Radio} />
+      <Route path={process.env.ROUTE_STEPPER} component={Stepper} />
+      <Route path={process.env.ROUTE_ACCORDION} component={Accordion} />
+      <Route path={process.env.ROUTE_COLLAPSE} component={Collapse} />
+      <Route path={process.env.ROUTE_NATIVE_SELECT} component={NativeSelect} />
       <Route component={NotFoundPage} />
     </Switch>
   </Suspense>

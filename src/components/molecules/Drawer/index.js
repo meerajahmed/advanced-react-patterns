@@ -52,6 +52,11 @@ const Drawer = props => {
         <ListItemLink to={process.env.ROUTE_TOUCH_STATES} primary="1.0 Touch states" />
         <ListItemLink to={process.env.ROUTE_TOUCH_GESTURE} primary="2.0 Touch gesture" />
         <ListItemLink to={process.env.ROUTE_CHECK_BOX} primary="1.0 Checkbox" />
+        <ListItemLink to={process.env.ROUTE_RADIO} primary="1.0 Radio" />
+        <ListItemLink to={process.env.ROUTE_STEPPER} primary="1.0 Stepper" />
+        <ListItemLink to={process.env.ROUTE_ACCORDION} primary="1.0 Accordion" />
+        <ListItemLink to={process.env.ROUTE_COLLAPSE} primary="1.0 Collapse" />
+        <ListItemLink to={process.env.ROUTE_NATIVE_SELECT} primary="1.0 Native select" />
       </List>
     </MuiDrawer>
   );

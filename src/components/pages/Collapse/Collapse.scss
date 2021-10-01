@@ -1,0 +1,44 @@
+.collapse {
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &.enter-done  {
+    height: auto;
+    overflow: visible;
+  }
+
+  &.exit-done {
+    visibility: hidden;
+  }
+
+  &__wrapper {
+    display: flex;
+    width: 100%;
+  }
+
+  &__wrapper-inner {
+    width: 100%;
+  }
+}
+
+
+
+.MuiCollapse-container {
+  height: 0;
+  overflow: hidden;
+  transition: height 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.MuiCollapse-entered {
+  height: auto;
+  overflow: visible;
+}
+.MuiCollapse-hidden {
+  visibility: hidden;
+}
+.MuiCollapse-wrapper {
+  display: flex;
+}
+.MuiCollapse-wrapperInner {
+  width: 100%;
+}
